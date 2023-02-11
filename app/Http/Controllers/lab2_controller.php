@@ -4,34 +4,34 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
-
+use App\Models\Post;
 class lab2_controller extends Controller
 {
 
-    function add_form(){
+    function add_form(){ //create
         return view('add_post');
     }
 
-    function insert()
+    function insert() //store
     {
         $rows = request()->all();  # $_POST
         array_shift($rows);  # remove _csrf
-//        dd($product_details);
-        DB::table('product')->insert($rows);
+//        dd($posts_details);
+        DB::table('posts')->insert($rows);
         return to_route('posts.view');
     }
 
-    function show()
+    function show() //index
     {
-        $rows = DB::table('product')->get();
-//        dump($products);
+        $rows = Post::all();
+    //    dd($rows);
         return view("view_post", $data=['rows'=>$rows]);
     }
 
 
-    function details($id)
+    function details($id) //show
     {
-        $rows = DB::table('product')->where('product_id', $id)->first();
+        $rows = DB::table('posts')->where('id', $id)->first();
 
         if ($rows){
             // dump($rows);
@@ -44,16 +44,33 @@ class lab2_controller extends Controller
 
     function delete($id)
     {
-        $deleted = DB::table('product')->where('product_id', $id)->delete();
-        // $rows = DB::table('product')->get();
+        $deleted = DB::table('posts')->where('id', $id)->delete();
+        // $rows = DB::table('posts')->get();
 
         if ($deleted){
             // dump($rows);
-            // return view("view_product", $data=['rows'=>$rows]);
+            // return view("view_posts", $data=['rows'=>$rows]);
             return to_route("posts.view");
 
         }else{
             return abort(404);
         }
+    }
+
+    function edit($id){
+        $post = Post::findOrFail($id);
+        // dd($post);
+        return view('edit_post', $data=['posts'=>$post]);
+    }
+
+    function update($id){
+        $post = Post::findOrFail($id);
+        $update_post = request()->all();
+        $post->title = $update_post["title"];
+        $post->post_by = $update_post["post_by"];
+        $post->date = $update_post["date"];
+        $post->save();
+        //return "updated";
+       return to_route("posts.view");
     }
 }

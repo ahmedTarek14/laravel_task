@@ -19,7 +19,7 @@
       <h5 class="card-title">Name</h5>
       <p class="card-text">{{$rows->post_by}}</p>
       <h5 class="card-title">Date Created</h5>
-      <p class="card-text">{{$rows->date}}</p>
+      <p class="card-text">{{$rows->posted_at}}</p>
     </div>
   </div>
 @endsection

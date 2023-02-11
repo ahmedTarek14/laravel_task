@@ -16,10 +16,10 @@
                 <a class="nav-link" href="/About Us">About Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/view posts">list</a>
+                <a class="nav-link" href="/posts">list</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/add posts">Add</a>
+                <a class="nav-link" href="posts/create">Add</a>
               </li>
             </ul>
           </div>

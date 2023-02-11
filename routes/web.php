@@ -32,11 +32,32 @@ Route::get('/About Us', [aboutController::class, 'about']);
 Route::get('/add posts', function () {
     return view('add_post');
 });
-use App\Http\Controllers\lab2_controller;
-Route::get("/view posts", [lab2_controller::class, "show"])->name('posts.view');
-Route::get('/add posts', [lab2_controller::class, 'add_form'])->name('posts.form');
-Route::post('/add posts/done', [lab2_controller::class, 'insert'])->name('posts.add');
-Route::get('/post details/{id}', [lab2_controller::class, 'details'])->name('posts.show');
-Route::delete('/post delete/{id}', [lab2_controller::class, 'delete'])->name('posts.delete');
+// use App\Http\Controllers\lab2_controller;
+use App\Http\Controllers\PostController;
+// Route::get("/view posts", [PostController::class, "show"])->name('posts.view');
+// Route::get('/add posts', [PostController::class, 'add_form'])->name('posts.form');
+// Route::post('/add posts/done', [PostController::class, 'insert'])->name('posts.add');
+// Route::get('/post details/{id}', [PostController::class, 'details'])->name('posts.show');
+// Route::delete('/post delete/{id}', [PostController::class, 'delete'])->name('posts.delete');
+// Route::get('/posts/edit/{id}',[PostController::class, 'edit'])->name('posts.edit');
+// Route::post('/posts/update/{id}',[PostController::class, 'update'])->name('posts.update');
+
+// Route::get("/view posts", [PostController::class, "index"])->name('posts.index');
+// Route::get('/add posts', [PostController::class, 'create'])->name('posts.create');
+// Route::post('/add posts/done', [PostController::class, 'store'])->name('posts.store');
+// Route::get('/post details/{id}', [PostController::class, 'show'])->name('posts.show');
+// Route::delete('/post delete/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+// Route::get('/posts/edit/{id}',[PostController::class, 'edit'])->name('posts.edit');
+// Route::post('/posts/update/{id}',[PostController::class, 'update'])->name('posts.update');
+
+//using CRD OP
+// Route::get("/view posts", [PostController::class, "index"])->name('posts.index');
+// Route::get('/add posts', [PostController::class, 'create'])->name('posts.create');
+// Route::post('/add_posts/done', [PostController::class, 'store'])->name('posts.store');
+// Route::get('/post details/{post}', [PostController::class, 'show'])->name('posts.show');
+// Route::delete('/post delete/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+// Route::get('/posts/edit/{post}',[PostController::class, 'edit'])->name('posts.edit');
+// Route::post('/posts/update/{post}',[PostController::class, 'update'])->name('posts.update');
 
 
+Route::resource('posts', PostController::class);
